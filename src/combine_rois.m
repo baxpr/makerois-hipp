@@ -47,7 +47,7 @@ end
 
 
 %% Done - write label image and info CSV
-Vlabels = Vat;
+Vlabels = Vtseg;
 Vlabels.pinfo(1:2) = [1;0];
 Vlabels.dt(1) = spm_type('uint16');
 roi_nii = fullfile(out_dir,'rois_hipp.nii');

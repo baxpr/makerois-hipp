@@ -5,7 +5,7 @@ function makerois(varargin)
 P = inputParser;
 
 % Temporal lobe segmentation, Temporal_Lobe_v3 SEG
-addOptional(P,'tseg_niigz','../INPUTS/tseg.nii.gz');
+addOptional(P,'tseg_niigz','../INPUTS/segmentation.nii.gz');
 
 % Forward SPM deformation field from native to atlas, cat12 DEF_FWD
 addOptional(P,'deffwd_niigz','../INPUTS/y_t1.nii.gz');
