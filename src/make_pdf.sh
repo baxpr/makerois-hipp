@@ -1,25 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # PDF for QA check
 
 echo Making PDF
 
 # Work in output directory
-cd ${OUTDIR}
+cd ${out_dir}
 
 # Views of seg over subject T1 and atlas T1
 z=100
 fsleyes render -of subj.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
-  ${WT1_NII} --overlayType volume \
-  ${WSEG_NII} --overlayType label --lut random_big --outlineWidth 0 #--outline
+  wt1 --overlayType volume \
+  wtseg --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 fsleyes render -of atlas.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
-  ${MNI_NII} --overlayType volume \
-  ${WSEG_NII} --overlayType label --lut random_big --outlineWidth 0 #--outline
+  "${FSLDIR}"/data/standard/MNI152_T1_2mm --overlayType volume \
+  wtseg --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 
 # Combine into single PDF
@@ -29,7 +29,7 @@ montage \
     -tile 1x2 -trim -quality 100 -background black -gravity center \
     -border 20 -bordercolor black page1.png
 
-info_string="$PROJECT $SUBJECT $SESSION $SCAN"
+info_string="$project $subject $session $scan"
 convert \
     -size 2600x3365 xc:white \
     -gravity center \( page1.png -resize 2400x \) -composite \
