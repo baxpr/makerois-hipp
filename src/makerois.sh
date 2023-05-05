@@ -41,3 +41,6 @@ run_spm12.sh ${MATLAB_RUNTIME} function makerois \
 
 # PDF
 make_pdf.sh
+
+# Zip
+gzip "${out_dir}"/rois_hipp.nii

@@ -13,13 +13,13 @@ fsleyes render -of subj.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   wt1 --overlayType volume \
-  wtseg --overlayType label --lut random_big --outlineWidth 0 #--outline
+  rois_hipp --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 fsleyes render -of atlas.png \
   --scene ortho --worldLoc 24 -10 -23 --displaySpace world --xzoom $z --yzoom $z --zzoom $z \
   --layout horizontal --hideCursor --hideLabels \
   "${FSLDIR}"/data/standard/MNI152_T1_2mm --overlayType volume \
-  wtseg --overlayType label --lut random_big --outlineWidth 0 #--outline
+  rois_hipp --overlayType label --lut random_big --outlineWidth 0 #--outline
 
 
 # Combine into single PDF
