@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 # Initialize defaults
-export label_info=
+export mnigeom_nii=avg152T1.nii
 export out_dir=/OUTPUTS
+export project=TESTPROJ
+export subject=TESTSUBJ
+export session=TESTSESS
+export scan=TESTSCAN
 
 # Parse input options
 while [[ $# -gt 0 ]]; do
@@ -22,17 +26,17 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Prep files
-cp "${tseg_niigz}" "${outdir}"/tseg.nii.gz
-cp "${deffwd_niigz}" "${outdir}"/y_deffwd.nii.gz
-cp "${wt1_niigz}" "${outdir}"/wt1.nii.gz
+cp "${tseg_niigz}" "${out_dir}"/tseg.nii.gz
+cp "${deffwd_niigz}" "${out_dir}"/y_deffwd.nii.gz
+cp "${wt1_niigz}" "${out_dir}"/wt1.nii.gz
 gunzip "${out_dir}"/*.nii.gz
 
 # Matlab part
 run_spm12.sh ${MATLAB_RUNTIME} function makerois \
-    wt1_nii "${outdir}"/wt1.nii \
-    tseg_nii "${outdir}"/tseg.nii. \
-    deffwd_nii "${outdir}"/y_deffwd.nii \
-    mnigeom_nii avg152T1.nii \
+    wt1_nii "${out_dir}"/wt1.nii \
+    tseg_nii "${out_dir}"/tseg.nii. \
+    deffwd_nii "${out_dir}"/y_deffwd.nii \
+    mnigeom_nii "${mnigeom_nii}" \
     out_dir "${out_dir}"
 
 # PDF
