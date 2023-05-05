@@ -34,7 +34,7 @@ gunzip "${out_dir}"/*.nii.gz
 # Matlab part
 run_spm12.sh ${MATLAB_RUNTIME} function makerois \
     wt1_nii "${out_dir}"/wt1.nii \
-    tseg_nii "${out_dir}"/tseg.nii. \
+    tseg_nii "${out_dir}"/tseg.nii \
     deffwd_nii "${out_dir}"/y_deffwd.nii \
     mnigeom_nii "${mnigeom_nii}" \
     out_dir "${out_dir}"
